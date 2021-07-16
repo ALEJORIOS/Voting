@@ -16,7 +16,7 @@ var colors = [];
 
 db.collection('Votes').get().then((snapshot) => {
     snapshot.docs.forEach((color, index) => {
-        colors[index] = color.data().Votes
+        colors[index] = color.data().votes
 
     });
 });
@@ -37,67 +37,111 @@ function state() {
         // Actualiza Base de datos
         if (radialInputs[0].checked) {
             colors[0] = colors[0] + 1;
-            db.collection('Votes').doc('Black').update({
-                Votes: colors[0]
+            db.collection('Votes').doc('1Red').update({
+                votes: colors[0]
             });
         }
         if (radialInputs[1].checked) {
             colors[1] = colors[1] + 1;
-            db.collection('Votes').doc('Blue').update({
-                Votes: colors[1]
+            db.collection('Votes').doc('2Red-Orange').update({
+                votes: colors[1]
             });
         }
         if (radialInputs[2].checked) {
             colors[2] = colors[2] + 1;
-            db.collection('Votes').doc('Green').update({
-                Votes: colors[2]
+            db.collection('Votes').doc('3Orange').update({
+                votes: colors[2]
             });
         }
         if (radialInputs[3].checked) {
             colors[3] = colors[3] + 1;
-            db.collection('Votes').doc('Red').update({
-                Votes: colors[3]
+            db.collection('Votes').doc('4Yellow-Orange').update({
+                votes: colors[3]
             });
         }
         if (radialInputs[4].checked) {
             colors[4] = colors[4] + 1;
-            db.collection('Votes').doc('White').update({
-                Votes: colors[4]
+            db.collection('Votes').doc('5Yellow').update({
+                votes: colors[4]
             });
         }
         if (radialInputs[5].checked) {
             colors[5] = colors[5] + 1;
-            db.collection('Votes').doc('Yellow').update({
-                Votes: colors[5]
+            db.collection('Votes').doc('6Yellow-Green').update({
+                votes: colors[5]
+            });
+        }
+        if (radialInputs[6].checked) {
+            colors[6] = colors[6] + 1;
+            db.collection('Votes').doc('7Green').update({
+                votes: colors[6]
+            });
+        }
+        if (radialInputs[7].checked) {
+            colors[7] = colors[7] + 1;
+            db.collection('Votes').doc('8Blue-Green').update({
+                votes: colors[7]
+            });
+        }
+        if (radialInputs[8].checked) {
+            colors[8] = colors[8] + 1;
+            db.collection('Votes').doc('9Blue').update({
+                votes: colors[8]
+            });
+        }
+        if (radialInputs[9].checked) {
+            colors[9] = colors[9] + 1;
+            db.collection('Votes').doc('ABlue-Violet').update({
+                votes: colors[9]
+            });
+        }
+        if (radialInputs[10].checked) {
+            colors[10] = colors[10] + 1;
+            db.collection('Votes').doc('BViolet').update({
+                votes: colors[10]
+            });
+        }
+        if (radialInputs[11].checked) {
+            colors[11] = colors[11] + 1;
+            db.collection('Votes').doc('CRed-Violet').update({
+                votes: colors[11]
             });
         }
         updateChart()
+        document.cookie = "vote=true";
+        console.log(document.cookie)
     }
 }
 
 
 // Grafica
 
-const labels = ["Black", "Blue", "Green", "Red", "White", "Yellow"];
+const labels = ["Red", "Red-Orange", "Orange", "Yellow-Orange", "Yellow", "Yellow-Green", "Green", "Blue-Green", "Blue", "Blue-Violet", "Violet", "Red-Violet"];
 const data = {
     labels: labels,
     datasets: [{
         // borderColor: 'rgb(0,0,0)',
         backgroundColor: [
-            'rgb(206, 190, 226)',
-            'rgb(122, 143, 190)',
-            'rgb(82, 82, 82)',
-            'rgb(155, 38, 99)',
-            'rgb(230, 167, 125)',
-            'rgb(191, 241, 167)'
+            '#FE0000',
+            '#FF6400',
+            '#FE9A00',
+            '#FFCD01',
+            '#FFFF07',
+            '#65CC01',
+            '#009801',
+            '#00CDCC',
+            '#0266CB',
+            '#660099',
+            '#98009A',
+            '#CC0099'
         ],
-        data: [0, 0, 0, 0, 0, 0]
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     }]
 };
 
 const config = {
-    type: 'pie',
+    type: 'doughnut',
     data,
     options: {}
 };
