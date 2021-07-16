@@ -109,7 +109,6 @@ function state() {
         }
         updateChart()
         document.cookie = "vote=true";
-        console.log(document.cookie)
     }
 }
 
@@ -154,4 +153,32 @@ var myChart = new Chart(
 function updateChart() {
     myChart.data.datasets[0].data = colors;
     myChart.update();
+}
+
+// Block by cookie
+function lock() {
+    const radialInputs = document.getElementsByName("flexRadioDefault")
+    let cookie = getCookie('vote');
+    if (cookie == 'true') {
+        for (let i = 0; i < radialInputs.length; i++) {
+            radialInputs[i].disabled = true;
+        }
+    }
+
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 }
